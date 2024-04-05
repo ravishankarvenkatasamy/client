@@ -20,7 +20,7 @@ function TableList() {
   async function getdata() {
     await axios.get("http://localhost:5000/api/users")
       .then((data) => {
-        setData(data.data)
+        setData(data.data.reverse())
         console.log(data)
 
       })
