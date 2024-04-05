@@ -107,6 +107,7 @@ function App() {
             .then((data) => {
                 setAllow(false)
                 console.log(data)
+                navigate("/TableList");
 
             })
     }
@@ -173,7 +174,7 @@ function App() {
             }
             console.log(JSON.stringify(newObjectTwo))
             postdata(newObjectTwo)
-            navigate("/TableList");
+            
 
         }
     };
