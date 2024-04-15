@@ -103,7 +103,7 @@ function App() {
 
     async function postdata(postdata) {
         localStorage.setItem("userdata", true);
-        await axios.post("http://localhost:5000/api/users", postdata)
+        await axios.post('http://localhost:8081/user', postdata)
             .then((data) => {
                 setAllow(false)
                 console.log(data)
@@ -169,12 +169,12 @@ function App() {
                 totalPointsplayer2: winningPlayer2.length,
                 winner: result,
                 winningPoint: totalPoint,
-                rounds: objects
+                rounds: JSON.stringify(objects)
 
             }
             console.log(JSON.stringify(newObjectTwo))
             postdata(newObjectTwo)
-            
+
 
         }
     };

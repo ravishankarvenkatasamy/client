@@ -18,7 +18,7 @@ function TableList() {
     navigate("/");
   }
   async function getdata() {
-    await axios.get("http://localhost:5000/api/users")
+    await axios.get("http://localhost:8081/user")
       .then((data) => {
         setData(data.data.reverse())
         console.log(data)
@@ -49,10 +49,10 @@ function TableList() {
             </tr>
           </thead>
           <tbody>
-            {data.map((roundsArray, index) => (
+            {data.length ? data.map((roundsArray, index) => (
               <React.Fragment key={index}>
 
-                {roundsArray.rounds.map((round, innerIndex) => (
+                {JSON.parse(roundsArray.rounds).map((round, innerIndex) => (
                   <tr key={innerIndex}>
                     <td>{round.round + 1}</td>
                     <td>{round.player1}</td>
@@ -64,12 +64,12 @@ function TableList() {
                   </tr>
                 ))}
                 <tr>
-                  <td className="font-weight-bold">Total Rounds: {roundsArray.rounds.length} </td>
+                  <td className="font-weight-bold">Total Rounds: {JSON.parse(roundsArray.rounds).length} </td>
                   <td colSpan={7} className="text-center font-weight-bold"> <span className="float-left"> Players : {roundsArray.player1}({roundsArray.totalPointsplayer1}) , {roundsArray.player2}({roundsArray.totalPointsplayer2}) </span>Team {index + 1}<span className="float-right">Winner : {roundsArray.winner}({roundsArray.winningPoint})</span></td>
 
                 </tr>
               </React.Fragment>
-            ))}
+            )) : null}
           </tbody>
         </Table>
       </div>
